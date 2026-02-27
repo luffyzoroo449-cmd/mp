@@ -19,6 +19,17 @@ namespace ShadowRace.EditorTools
             GenericBuild(BuildTarget.StandaloneOSX, "Builds/Mac/ShadowRace.app");
         }
 
+        [MenuItem("Shadow Race/Build/Android (APK)")]
+        public static void BuildAndroid()
+        {
+            // Set required Android settings
+            PlayerSettings.Android.bundleVersionCode = 1;
+            PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingImplementation.IL2CPP);
+            PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARMv7 | AndroidArchitecture.ARM64;
+            
+            GenericBuild(BuildTarget.Android, "Builds/Android/ShadowRace.apk");
+        }
+
         private static void GenericBuild(BuildTarget target, string path)
         {
             Debug.Log($"Starting Automated Build for {target}...");
